@@ -1,4 +1,4 @@
-# 2024/25 - GD - DataAnalytics - IntroToR
+# 2024/25 - GD - Data Analytics - IntroToR
 Introductory R code used in the 3DGD class
 
 ## Overview 
