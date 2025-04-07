@@ -1,0 +1,84 @@
+---
+title: "Collaborative Project"
+subtitle: "User Testing - Survey Analysis"
+author: "Team Name / Student Name"
+date: "`r format(Sys.Date(), '%B %d %Y')`"
+toc: true
+execute:
+  echo: false
+  warning: false
+---
+
+```{r setup, include=FALSE}
+# Load libraries
+library(tidyverse)
+library(psych)    # For descriptive stats
+library(ggpubr)   # For enhanced plots like corr plots
+```
+
+## 1. Load and Inspect Data
+
+```{r loading, include=FALSE}
+# Load CSV (pre-generated sample data)
+survey_data <- read_csv("data/2023_24_survey_responses.csv")
+
+# View structure and preview
+glimpse(survey_data)
+```
+
+```{r somedata}
+head(survey_data)
+```
+
+## 2. Descriptive Statistics
+
+### Summary for all numeric columns
+
+```{r}
+# Summary for all numeric columns
+describe(survey_data)
+```
+
+### Summary for a specific column (e.g. enjoyment)
+
+```{r}
+# Summary for a specific column (e.g. enjoyment)
+summary(survey_data$enjoyment)
+```
+
+## 3. Test for Normality
+
+```{r}
+# Histogram and Shapiro-Wilk test for 'enjoyment'
+ggplot(survey_data, aes(x = enjoyment)) + 
+  geom_histogram(binwidth = 1, fill = "steelblue", color = "white") +
+  labs(title = "Distribution of Enjoyment Ratings")
+
+shapiro.test(survey_data$enjoyment)
+```
+
+## 4. Boxplots and Comparisons
+
+```{r}
+# Boxplot of enjoyment by gender
+ggplot(survey_data, aes(x = gender, y = enjoyment)) +
+  geom_boxplot(fill = "lightblue") +
+  labs(title = "Enjoyment by Gender")
+```
+
+## 5. Correlation Analysis
+
+```{r}
+# Scatterplot and correlation test between immersion and engagement
+ggscatter(survey_data, x = "immersion", y = "engagement", 
+          add = "reg.line", conf.int = TRUE, 
+          cor.coef = TRUE, cor.method = "pearson") 
+
+cor.test(survey_data$immersion, survey_data$engagement)
+```
+
+## 6. Observations and Next Steps
+
+-   The **enjoyment** scores appear to be normally distributed / not normally distributed.
+-   There is / isn't a significant correlation between immersion and engagement.
+-   Suggestions for game improvement based on results...
