@@ -46,7 +46,8 @@ d <- 10*a + b/2.3
 remainder <- 17%%3 # 1
 remainder
 
-the_result <- (a*2.5) + (6.8/(10.1 - b)); the_result
+the_result <- (a*2.5) + (6.8/(10.1 - b))
+the_result
 
 # Type Checking (Useful cleaning/validating) -------------------------------
 
@@ -92,6 +93,17 @@ rounded_pi = round(pi, 3)
 rounded_pi
 
 # User-defined Function ---------------------------------------------------
+
+FunkyFunction <- function(x) {
+  result <- x*2 + 10
+}
+
+z <- FunkyFunction(5)
+z
+
+print(FunkyFunction(23))
+
+
 
 AbsDouble <- function(a){
   abs(2*a)
@@ -149,13 +161,18 @@ print(paste("Ex6 - LogAbs(-16, 2) is", log_value2))
 # Load CSV file -----------------------------------------------------------
 
 # IMPORTANT - dont forget to set your working directory (see Session/Set Working Directory/To Source File Location)
-student_data <- read.csv("Data/2023 - Survey - 1.csv")
-student_data$Shoe.Size..EU.
+student_data <- read.csv("data/2021_22_trivial_survey_responses.csv")
+
 hist(student_data$Shoe.Size..EU.)
-summary(student_data)
+summary(student_data$Caffeine..1...hate..5...love.)
 
 vec_height <- student_data$Height.cm.
 range(vec_height)
+
+boxplot(student_data$Caffeine..1...hate..5...love.,
+        main = "Coffee",
+        col = rgb(0.6, 0.5, 0) # RGB values
+)
 
 
 

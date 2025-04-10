@@ -1,0 +1,304 @@
+---
+title: "2024-25 - GD4 - 3D Game Development"
+subtitle: "Data Analysis - Cheat Sheet"
+author: "Niall McGuinness"
+date: "`r format(Sys.Date(), '%B %d %Y')`"
+---
+
+# Data Analysis Terminology Mindmap
+
+```{mermaid}
+mindmap
+  root((Data Analysis))
+    (Data Types)
+      [Categorical]
+        (Nominal)
+        (Ordinal)
+      [Numerical]
+        (Discrete)
+        (Continuous)
+    (Descriptive Statistics)
+      [Central Tendency]
+        (Mean)
+        (Median)
+        (Mode)
+      [Dispersion]
+        (Range)
+        (Variance)
+        (Standard Deviation)
+        (IQR)
+    (Data Visualization)
+      [Basic Plots]
+        (Histogram)
+        (Bar Chart)
+        (Scatter Plot)
+        (Box Plot)
+      [Advanced Plots]
+        (QQ Plot)
+        (Heat Map)
+        (Violin Plot)
+    (Inferential Statistics)
+      [Hypothesis Testing]
+        (p-value)
+        (Alpha level)
+        (Type I/II errors)
+      [Statistical Tests]
+        (t-test)
+        (ANOVA)
+        (Chi-Square)
+    (Regression Analysis)
+      [Linear Regression]
+        (Slope)
+        (Intercept)
+        (R-squared)
+      [Multiple Regression]
+```
+
+# Key Statistical Terms and Definitions
+
+## Data Types
+
+| Term | Definition |
+|------|------------|
+| **Categorical Data** | Data that can be divided into groups or categories |
+| **Nominal Data** | Categories with no inherent order (e.g., colors, gender) |
+| **Ordinal Data** | Categories with a meaningful order (e.g., ratings, education level) |
+| **Numerical Data** | Data with mathematical meaning that can be measured |
+| **Discrete Data** | Numerical data with countable, separate values (e.g., number of children) |
+| **Continuous Data** | Numerical data that can take any value within a range (e.g., height, time) |
+
+## Descriptive Statistics
+
+### Measures of Central Tendency
+
+| Term | Definition | R Function |
+|------|------------|------------|
+| **Mean** | The average of all values (sum divided by count) | `mean()` |
+| **Median** | The middle value when data is ordered | `median()` |
+| **Mode** | The most frequently occurring value | `table()` |
+
+### Measures of Dispersion
+
+| Term | Definition | R Function |
+|------|------------|------------|
+| **Range** | Difference between maximum and minimum values | `max() - min()` |
+| **Variance** | Average of squared differences from the mean | `var()` |
+| **Standard Deviation** | Square root of variance; shows spread of data | `sd()` |
+| **Interquartile Range (IQR)** | Range of the middle 50% of data | `IQR()` |
+| **Percentile** | Value below which a percentage of observations fall | `quantile()` |
+
+## Data Visualization
+
+### Basic Plot Types
+
+| Plot Type | Purpose | R Function |
+|-----------|---------|------------|
+| **Histogram** | Shows distribution of a numerical variable | `hist()` |
+| **Bar Chart** | Displays counts of categorical data | `barplot()` |
+| **Scatter Plot** | Shows relationship between two numerical variables | `plot()` |
+| **Box Plot** | Displays distribution and identifies outliers | `boxplot()` |
+| **Line Chart** | Shows trends over time or ordered categories | `plot(type="l")` |
+| **Pie Chart** | Shows proportions of a whole | `pie()` |
+
+### Advanced Plot Types
+
+| Plot Type | Purpose | R Function |
+|-----------|---------|------------|
+| **QQ Plot** | Assesses if data follows a normal distribution | `qqnorm(), qqline()` |
+| **Violin Plot** | Combines box plot with density distribution | `vioplot()` (requires package) |
+| **Heat Map** | Displays matrix data using colors | `heatmap()` |
+| **Density Plot** | Shows distribution shape | `density()`, `plot(density())` |
+
+## Inferential Statistics
+
+### Hypothesis Testing
+
+| Term | Definition |
+|------|------------|
+| **Null Hypothesis (H₀)** | Statement of no effect or no difference |
+| **Alternative Hypothesis (H₁)** | Statement of effect or difference |
+| **p-value** | Probability of observing results if null hypothesis is true |
+| **Alpha Level (α)** | Threshold for statistical significance (typically 0.05) |
+| **Type I Error** | Rejecting a true null hypothesis (false positive) |
+| **Type II Error** | Failing to reject a false null hypothesis (false negative) |
+| **Statistical Power** | Probability of correctly rejecting a false null hypothesis |
+
+### Common Statistical Tests
+
+| Test | Purpose | R Function |
+|------|---------|------------|
+| **t-test** | Compares means between two groups | `t.test()` |
+| **ANOVA** | Compares means among three or more groups | `aov()` |
+| **Chi-Square Test** | Tests association between categorical variables | `chisq.test()` |
+| **Correlation Test** | Measures strength of relationship between variables | `cor.test()` |
+
+## Regression Analysis
+
+| Term | Definition | R Function |
+|------|------------|------------|
+| **Linear Regression** | Models relationship between variables | `lm()` |
+| **Multiple Regression** | Regression with multiple predictors | `lm()` |
+| **R-squared (R²)** | Proportion of variance explained by model | `summary(model)$r.squared` |
+| **Residual** | Difference between observed and predicted values | `residuals()` |
+| **Coefficient** | Estimated effect of predictor on outcome | `coef()` |
+| **Intercept** | Predicted value when all predictors equal zero | `coef()[1]` |
+| **Slope** | Change in outcome per unit change in predictor | `coef()[2]` |
+
+## Data Cleaning Terms
+
+| Term | Definition |
+|------|------------|
+| **Missing Values** | Data points with no recorded value (NA in R) |
+| **Outlier** | Data point that differs significantly from other observations |
+| **Data Imputation** | Replacing missing values with estimated values |
+| **Data Transformation** | Converting data to improve analysis (e.g., log transform) |
+| **Standardization** | Rescaling data to have mean=0 and SD=1 |
+| **Normalization** | Rescaling data to range between 0 and 1 |
+
+## R Data Analysis Functions
+
+| Function | Purpose | Example |
+|----------|---------|---------|
+| `summary()` | Provides summary statistics for data | `summary(data)` |
+| `str()` | Shows structure of data | `str(data)` |
+| `head()` | Shows first few rows of data | `head(data)` |
+| `table()` | Creates frequency table | `table(data$variable)` |
+| `aggregate()` | Computes statistics by group | `aggregate(y ~ x, data, mean)` |
+| `subset()` | Filters data based on condition | `subset(data, variable > 10)` |
+
+# Common Data Analysis Pitfalls
+
+1. **Correlation ≠ Causation**: A correlation between variables doesn't mean one causes the other
+
+2. **Selection Bias**: Non-random sample selection that doesn't represent the population
+
+3. **Overfitting**: Creating a model that fits training data too closely but performs poorly on new data
+
+4. **Multiple Testing Problem**: Running many tests increases chance of false positives
+
+5. **Simpson's Paradox**: A trend that appears in groups of data disappears when groups are combined
+
+6. **Confirmation Bias**: Focusing on data that confirms prior beliefs
+
+7. **Outlier Sensitivity**: Some statistics (like mean) are strongly affected by outliers
+
+# Step-by-Step Data Analysis Process
+
+1. **Define Question**: Clearly define the problem or question to be answered
+
+2. **Collect Data**: Gather relevant data through surveys, experiments, or existing datasets
+
+3. **Clean Data**: Handle missing values, remove duplicates, correct errors
+
+4. **Explore Data**: Use descriptive statistics and visualizations to understand patterns
+
+5. **Analyze Data**: Apply appropriate statistical methods based on research questions
+
+6. **Interpret Results**: Draw conclusions based on analysis
+
+7. **Communicate Findings**: Present results through reports, visualizations, or presentations
+
+# Lab Report Structure Mindmap
+
+```{mermaid}
+%%{init: {'theme': 'forest'}}%%
+mindmap
+  root((Lab Report))
+    (Title Page)
+      [Components]
+        (Report Title)
+        (Author Names)
+        (Date)
+        (Affiliation)
+      [Examples]
+        ("Survey Analysis of Player Experience in FPS Games")
+    (Executive Summary)
+      [Components]
+        (Purpose)
+        (Key Results)
+        (Main Recommendations)
+      [Justification]
+        (Allows busy readers to grasp main points quickly)
+      [Example]
+        ("Players aged 18-24 showed highest engagement")
+    (Introduction)
+      [Components]
+        (Background)
+        (Research Questions)
+        (Hypotheses)
+      [Relevance]
+        (Establishes context and goals)
+      [Example]
+        ("We investigated how difficulty affects player retention")
+    (Methodology)
+      [Components]
+        (Data Collection Method)
+        (Sample Size/Description)
+        (Analysis Approach)
+      [Justification]
+        (Ensures reproducibility)
+      [Example]
+        ("Online survey of 45 participants using 5-point Likert scales")
+    (Results)
+      [Components]
+        (Descriptive Statistics)
+        (Statistical Tests)
+        (Visualizations)
+      [Justification]
+        (Presents evidence without interpretation)
+      [Example]
+        (Tables of means, histograms, regression analysis)
+    (Discussion)
+      [Components]
+        (Interpretation of Results)
+        (Connection to Hypotheses)
+        (Unexpected Findings)
+      [Relevance]
+        (Extracts meaning from raw data)
+      [Example]
+        ("The correlation suggests difficulty impacts enjoyment")
+    (Limitations)
+      [Components]
+        (Sample Constraints)
+        (Methodological Issues)
+        (Generalizability)
+      [Justification]
+        (Acknowledges boundaries of conclusions)
+    (Recommendations)
+      [Components]
+        (Evidence-Based Suggestions)
+        (Prioritized Actions)
+      [Relevance]
+        (Translates findings into practical steps)
+    (Conclusion)
+      [Components]
+        (Summary of Key Findings)
+        (Future Research)
+      [Justification]
+        (Reinforces main takeaways)
+    (Appendices)
+      [Components]
+        (Raw Data)
+        (Code)
+        (Additional Visualizations)
+      [Relevance]
+        (Provides supporting details without cluttering main text)
+```
+
+# Glossary of Additional Terms
+
+| Term | Definition |
+|------|------------|
+| **Population** | The entire group being studied |
+| **Sample** | A subset of the population used for analysis |
+| **Parameter** | A value describing a characteristic of a population |
+| **Statistic** | A value calculated from a sample |
+| **Confidence Interval** | Range of values likely to contain the true population parameter |
+| **Effect Size** | Magnitude of difference between groups or strength of relationship |
+| **Normal Distribution** | Bell-shaped distribution defined by mean and standard deviation |
+| **Skewness** | Measure of asymmetry in a distribution |
+| **Kurtosis** | Measure of "tailedness" of a distribution |
+| **Degrees of Freedom** | Number of values that can vary freely in a calculation |
+
+# References
+- [Mermaid Theme Configuration](https://mermaid.js.org/config/theming.html)

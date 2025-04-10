@@ -10,7 +10,7 @@
 cat("\014")
 
 # Viewing in-built datasets - you will probably want to comment this out later!
-data()
+# data()
 
 # Assigning variable values
 x <- 20
@@ -34,8 +34,8 @@ names(chickwts)
 str(chickwts)
 
 # Viewing the first (4) and last (10) rows of dataset
-head(chickwts, n = 4)
-tail(chickwts, n = 10)
+head(chickwts, n = 2)
+tail(chickwts, n = 6)
 
 # Show descriptive statistics for dataset
 summary(chickwts)
@@ -43,7 +43,8 @@ summary(chickwts)
 # Generating some basic plots using dataset
 stripchart(chickwts$weight, main="Some title", pch = 21)
 
-hist(chickwts$weight, main="Frequency of weights",
+hist(chickwts$weight, 
+     main="Frequency of weights",
      xlab = "weight",
      ylab = "frequency",
      col = "orange")

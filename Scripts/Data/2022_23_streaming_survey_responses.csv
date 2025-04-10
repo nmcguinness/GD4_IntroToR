@@ -1,0 +1,46 @@
+Age,Subscriptions,Main Platform,Hours per Week,Recommends Good Shows,Interface Usability,Feels Overwhelmed,Helps Me Relax,Last Binge Session (episodes/movies),Typical Viewing Time,Watch With,Finish Shows,Would Recommend (1–10),Binged Over 5,Mood-Matching Importance,Social Activity Rating,Streaming in 2022,Streaming in 2023,Streaming in 2024,Genre: Comedy,Genre: Drama,Genre: Sci-Fi/Fantasy,Genre: Documentary,Genre: Horror,Genre: Romance,Genre: Reality TV,Genre: Animation,Decision Factor: Story/Plot,Decision Factor: Characters & Acting,Decision Factor: Visual Effects / Cinematography,Decision Factor: Genre,Decision Factor: Length,Decision Factor: Recommendation,Decision Factor: Platform convenience
+27,1,Netflix,2.0,3,2,2,4,1,Late Night,With friends,Yes,7,No,6,2,1,1,2,2,3,2,3,3,3,3,3,5,3,3,5,4,5,4
+24,3,Netflix,12.0,5,5,2,5,6,Late Morning,With partner,Yes,10,Yes,8,5,9,10,12,5,4,5,3,4,2,4,2,3,3,2,5,2,5,2
+28,3,Netflix,9.0,3,2,3,5,5,Evening,With partner,Yes,5,No,9,3,8,7,9,5,2,5,4,3,4,1,2,4,5,3,3,3,4,4
+25,2,Netflix,6.0,3,2,3,2,2,Early Morning,Alone,Yes,5,No,6,3,4,3,6,4,3,3,4,3,2,2,3,3,4,3,3,4,4,2
+27,3,YouTube,12.0,4,2,2,5,4,Evening,Alone,Yes,7,No,9,3,10,12,12,3,4,5,4,2,3,2,5,4,3,2,5,5,4,2
+30,1,Amazon Prime Video,3.0,5,5,1,4,1,Late Morning,With family,Yes,9,No,5,5,1,2,3,4,4,4,4,4,4,2,3,3,3,2,3,4,3,5
+23,5,YouTube,19.0,5,5,1,4,8,Late Morning,With friends,Yes,10,Yes,7,5,18,18,19,2,2,5,3,4,5,3,5,3,4,2,4,5,5,5
+27,2,Disney+,3.0,4,4,2,4,2,Late Morning,With family,Yes,8,No,7,5,1,3,3,2,2,4,5,4,3,3,3,5,3,5,4,5,2,5
+28,3,Netflix,8.0,4,4,1,5,5,Evening,With family,Yes,7,No,5,5,5,8,8,2,2,3,2,4,4,3,4,3,4,2,3,2,3,4
+25,2,YouTube,10.0,5,4,1,5,4,Evening,Alone,Yes,10,No,9,2,8,9,10,2,3,3,3,4,4,4,5,4,4,2,4,3,2,3
+24,3,YouTube,10.0,5,5,1,4,4,Evening,With partner,Yes,10,No,7,3,8,9,10,5,2,3,2,4,5,1,4,4,4,2,3,4,2,2
+28,3,Amazon Prime Video,5.0,4,2,2,3,2,Late Night,Alone,Yes,8,No,7,1,4,4,5,2,4,3,5,1,2,3,2,5,4,2,5,2,3,2
+28,2,YouTube,5.0,3,2,4,3,2,Evening,Alone,No,7,No,8,5,4,4,5,5,4,3,4,3,2,1,3,4,4,4,5,4,2,2
+23,5,Disney+,13.0,3,3,5,1,7,Afternoon,Alone,Yes,5,Yes,3,3,9,12,13,5,2,4,5,4,3,4,2,4,5,5,4,5,5,4
+26,4,Amazon Prime Video,14.0,4,3,2,3,6,Late Night,With family,Yes,6,Yes,5,5,11,12,14,2,2,4,3,3,5,2,2,4,3,3,3,3,2,5
+25,5,Disney+,15.0,3,4,4,5,8,Afternoon,Alone,Yes,4,Yes,8,3,14,15,15,2,5,3,4,3,2,3,2,3,5,2,3,4,5,3
+22,4,Netflix,11.0,4,4,2,5,5,Late Night,Alone,Yes,9,No,10,4,9,10,11,3,4,5,3,1,5,1,2,3,3,4,4,4,5,4
+28,3,Netflix,11.0,3,5,4,3,6,Early Morning,With family,Yes,6,Yes,6,5,9,10,11,4,3,2,4,4,2,1,3,4,5,4,5,5,5,5
+26,5,Netflix,20.0,3,3,5,3,9,Late Night,Alone,Yes,5,Yes,6,4,17,18,20,2,5,3,2,2,4,3,2,5,4,4,4,4,4,4
+22,1,Amazon Prime Video,3.0,5,3,1,5,1,Early Morning,With family,Yes,10,No,9,3,1,3,3,3,2,5,2,1,2,2,3,3,3,3,5,4,2,3
+25,2,Netflix,6.0,5,4,1,5,4,Late Night,Alone,Yes,8,No,10,2,3,4,6,3,2,2,2,2,5,2,3,5,3,2,3,5,3,5
+21,1,Amazon Prime Video,3.0,3,2,3,3,2,Evening,Alone,Yes,8,No,5,1,2,2,3,4,4,3,5,3,4,2,4,4,5,5,5,2,3,4
+30,2,Apple TV,8.0,3,3,4,4,2,Late Night,With family,No,6,No,7,5,6,7,8,5,2,3,3,3,4,4,5,4,5,5,4,5,2,3
+26,2,Netflix,7.0,5,5,1,5,3,Late Morning,Alone,Yes,10,No,9,4,7,6,7,2,3,4,5,1,4,1,5,3,3,4,3,2,4,2
+29,2,Disney+,9.0,5,4,1,5,5,Evening,Alone,Yes,10,No,9,3,8,7,9,4,4,2,2,1,5,1,3,4,5,3,4,3,4,3
+21,4,YouTube,9.0,5,4,1,5,3,Late Night,Alone,No,10,No,9,2,6,8,9,2,2,2,3,2,3,1,4,3,5,3,4,2,5,2
+30,2,Netflix,5.0,4,4,1,4,3,Evening,Alone,Yes,8,No,6,2,4,3,5,3,4,5,2,4,3,4,3,4,5,3,5,2,2,4
+23,2,Netflix,9.0,3,2,4,1,5,Evening,With friends,Yes,5,No,2,4,8,9,9,3,2,4,5,2,3,1,3,4,4,5,4,3,2,5
+27,3,Netflix,8.0,5,5,1,5,3,Evening,Alone,No,10,No,9,4,6,7,8,5,2,4,5,1,5,4,3,3,4,4,5,2,3,5
+24,2,Netflix,10.0,3,4,1,2,4,Evening,With partner,Yes,7,No,6,5,7,9,10,3,2,4,5,2,4,2,4,3,5,2,3,5,2,4
+29,4,Apple TV,20.0,4,3,1,5,7,Evening,Alone,Yes,9,Yes,6,5,19,19,20,3,3,4,2,1,3,3,5,3,5,5,5,2,4,5
+23,1,YouTube,5.0,4,3,1,5,4,Evening,With family,Yes,9,No,10,5,6,4,5,4,3,2,3,2,5,1,4,4,4,4,3,3,2,5
+25,5,Amazon Prime Video,13.0,5,4,1,5,6,Late Night,With partner,Yes,9,Yes,10,2,12,12,13,2,4,2,3,1,3,1,2,4,4,4,5,5,3,2
+23,4,YouTube,14.0,4,4,2,4,7,Early Morning,With family,Yes,7,Yes,4,3,11,13,14,2,2,3,2,1,2,2,4,5,3,2,4,3,5,4
+27,2,YouTube,6.0,3,3,2,3,3,Afternoon,Alone,Yes,5,No,5,5,4,7,6,4,2,3,3,1,3,3,4,3,3,2,5,3,3,3
+25,1,Netflix,4.0,5,5,2,5,3,Late Night,Alone,No,10,No,9,4,1,2,4,5,3,4,2,4,3,4,4,4,4,2,5,4,3,2
+29,4,YouTube,20.0,3,4,3,3,9,Late Night,Alone,Yes,7,Yes,3,3,19,19,20,2,2,4,3,2,4,3,4,4,5,3,3,4,5,4
+27,4,Amazon Prime Video,17.0,3,3,5,4,8,Evening,With friends,Yes,4,Yes,6,5,17,16,17,3,3,4,4,2,5,2,5,3,5,2,4,3,3,2
+22,4,YouTube,14.0,4,3,3,4,7,Evening,With partner,Yes,9,Yes,6,3,12,13,14,2,2,3,4,2,4,2,2,5,5,4,5,3,3,3
+24,4,YouTube,13.0,4,5,1,3,7,Afternoon,With friends,Yes,7,Yes,8,5,11,13,13,3,4,5,5,1,4,3,5,3,5,2,4,3,2,3
+29,1,Netflix,4.0,4,4,2,4,3,Afternoon,Alone,Yes,7,No,9,1,2,3,4,5,2,5,4,2,4,4,5,5,3,4,5,4,2,4
+22,2,Netflix,5.0,4,4,2,5,2,Evening,With partner,Yes,6,No,10,3,2,6,5,4,2,3,4,2,4,4,4,4,4,5,5,4,5,3
+30,2,Netflix,8.0,4,5,2,5,3,Evening,With friends,Yes,6,No,10,4,6,6,8,2,5,3,4,1,4,1,3,5,5,3,4,2,2,2
+29,4,Disney+,10.0,5,4,3,5,6,Evening,Alone,Yes,10,Yes,8,1,8,8,10,4,3,3,2,3,3,4,3,4,3,5,5,2,2,3
+30,3,YouTube,12.0,3,4,2,4,3,Late Morning,Alone,No,6,No,7,2,9,13,12,2,2,3,4,1,4,3,5,3,5,5,4,3,3,2

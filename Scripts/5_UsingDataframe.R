@@ -1,17 +1,19 @@
+
 #' @title 5_UsingDataframe.R
-#' @description Creating, accessing, transforming, and manipulating dataframes
+#' @description Creating, accessing, transforming, and manipulating dataframes in R for beginners
 #' @author NMCG
 #' @bugs None
-#' @keywords create, summarise, extract, expand
+#' @keywords create, summarise, extract, expand, clean
 #' @seealso https://www.tutorialspoint.com/r/r_data_frames.htm
 
-
-if(!require("knitr"))
-  install.packages("knitr")
+# Load packages (install knitr if not already available) -----------------
+if(!require("knitr")) install.packages("knitr")
 library(knitr)
 
-# Creating a dataframe ----------------------------------------------------------
+# Clear the console (equivalent to Ctrl+L in RStudio) --------------------
+cat("\014")
 
+# Creating a dataframe ---------------------------------------------------
 animation_df <- data.frame(
   Movie = c("Shrek", "Up", "Jungle Book", "Aladdin"),
   Director = c("John Doe", "Jane Smith", "Alice Brown", "Bob White"),
@@ -29,7 +31,28 @@ print("Accessing the 'Movie' column:")
 print(animation_df$Movie)
 
 print("Accessing the first row:")
-print(animation_df[1,])
+print(animation_df[1, ])
+
+print("Accessing the first column:")
+print(animation_df[, 1])
+
+print("Accessing the element in the second row and third column:")
+print(animation_df[2, 3])
+
+print("Accessing a range of rows (rows 1 to 3):")
+print(animation_df[1:3, ])
+
+print("Accessing multiple specific rows (rows 1 and 4):")
+print(animation_df[c(1, 4), ])
+
+print("Accessing multiple columns by name (Movie and BudgetMillions):")
+print(animation_df[, c("Movie", "BudgetMillions")])
+
+print("Accessing a single column using [[ notation:")
+print(animation_df[["Director"]])
+
+print("Accessing a single cell by column name and row number:")
+print(animation_df[["Director"]][2])
 
 # Adding and removing columns ----------------------------------------------------------
 

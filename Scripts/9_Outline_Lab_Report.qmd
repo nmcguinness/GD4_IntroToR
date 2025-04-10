@@ -1,0 +1,280 @@
+---
+title: "2024-25 - GD4 - Collaborative Project"
+subtitle: "Beta Release - Data Analysis (2022–23)"
+author: "Niall McGuinness"
+date: "`r format(Sys.Date(), '%B %d %Y')`"
+keywords: ["collaborative", "project", "survey", "analysis", "game"]
+format:
+  html:
+    toc: true
+    toc-depth: 2
+    number-sections: true
+    highlight-style: github
+    fig-align: center
+    theme: flatly
+    code-fold: false
+    echo: false
+    warning: false
+  pdf:
+    toc: true
+    number-sections: true
+    echo: false
+    warning: false
+    fig-width: 6
+    fig-height: 4
+---
+
+```{r setup, include=FALSE}
+# Required packages
+if (!require("tidyverse")) install.packages("tidyverse")
+if (!require("GGally")) install.packages("GGally")
+if (!require("janitor")) install.packages("janitor")
+if (!require("DT")) install.packages("DT")
+
+library(tidyverse)  # For data wrangling, plotting — includes ggplot2, dplyr, readr, etc.
+library(GGally)     # For extended plotting tools, including correlation plots and regression diagnostics
+library(janitor)    # For cleaning and standardizing column names (e.g., snake_case formatting)
+library(DT)         # For rendering interactive data tables (sortable, searchable, paginated)
+
+
+# Set your CSV file path here
+# Set your directory and filename here
+data_dir <- "data"
+csv_file_name <- "2022_23_streaming_survey_responses.csv"
+
+# Full path to load
+csv_file <- file.path(data_dir, csv_file_name)
+```
+
+# Title Page
+> In this section, provide the official title of your game, the date when this report was completed, and the names of all team members who contributed to the game and data analysis.
+
+**Project / Game Title:**  
+**Date of Report:**  
+**Author / Team:**  
+
+# Executive Summary
+> This is a brief (200-300 word) summary of your entire report. Although it appears first, write this last. Summarize your purpose, methods, key findings, and most important recommendations. This section should be concise but comprehensive enough that someone could understand your main points without reading the full report.
+
+**Purpose of Data Analysis:**  
+**Key Findings:**  
+**Top Recommendations (if applicable):**  
+
+# Introduction
+> Provide context for your game project and explain why you collected data from users. Describe what your team hoped to learn from the data and any specific hypotheses or questions you wanted to answer. Make connections between your game design goals and your data collection goals.
+
+**Game Context & Background:**  
+**Nature of Collected Data (e.g., survey responses, gameplay telemetry):**  
+**Data Collection Goals / Hypotheses:**  
+
+# Methodology
+> Explain exactly how you collected your data. Specify how many participants (N=XX) took part, how they were recruited, and what demographic they represent (e.g., fellow students, online gamers, general public). Note any consent procedures you followed. Describe the survey structure or playtest procedure that participants experienced.
+
+**Data Collection Method:**  
+**Sample Size / Participants / Consent Info:**  
+**Types of Data Collected:**  
+
+# Data Overview
+> In this section, examine the structure of your dataset. After running the code chunk, discuss what variables are present, what data types they are (numeric, categorical, etc.), and how many complete responses you have. Note any missing data or potential data quality issues. A good format is: "Our dataset contains X variables and N=XX complete responses. Key variables include..."
+
+```{r}
+# Load and clean data
+survey_data <- read_csv(csv_file) %>%
+  janitor::clean_names()
+
+# Show structure
+glimpse(survey_data)
+```
+
+# Descriptive Statistics
+> Analyze the central tendencies and distributions of your key numeric variables. For each important variable, report mean, median, min/max values, and standard deviation where appropriate. For example: "The mean age of participants was XX (SD=XX), with a range from XX to XX. Participants reported playing an average of XX hours per week (median=XX)." Comment on whether distributions appear normal or skewed. Highlight any surprising values or outliers.
+
+## Rough Table
+
+```{r}
+summary(select(survey_data,
+               survey_data$age,
+               survey_data$hours_played,
+               survey_data$enjoyment_score))
+```
+
+## Pretty Table
+
+```{r}
+# Create a simple, pretty table with key statistics
+player_stats <- survey_data %>%
+  summarize(
+    `Average Age` = round(mean(age, na.rm = TRUE), 1),
+    `Age Range` = paste(min(age, na.rm = TRUE), "to", max(age, na.rm = TRUE)),
+    `Average Hours Per Week` = round(mean(hours_per_week, na.rm = TRUE), 1),
+    `Median Hours Per Week` = median(hours_per_week, na.rm = TRUE),
+    `Average Recommendation Score` = round(mean(would_recommend_1_10, na.rm = TRUE), 1),
+    `Number of Participants` = n()
+  )
+
+# Display as a neat transposed table
+player_stats %>%
+  t() %>%
+  as.data.frame() %>%
+  setNames("Value") %>%
+  knitr::kable(caption = "Key Player Statistics")
+```
+
+# Interactive Data Table
+> This interactive table allows you to explore all your data. In this section, comment on any interesting patterns you can observe by sorting or filtering the data. Point out specific rows or values that represent particularly interesting user responses or patterns.
+
+```{r}
+datatable(
+  survey_data,
+  options = list(pageLength = 10, autoWidth = TRUE, searchHighlight = TRUE),
+  filter = 'top',
+  caption = "Full Dataset Overview"
+)
+```
+
+# Linear Regression Analysis
+> Regression analysis helps determine relationships between variables. For each regression you run, clearly state: (1) What relationship you're testing, (2) The R² value and what percentage of variance it explains, (3) The p-value and whether the relationship is statistically significant (typically p < 0.05), and (4) The practical interpretation of this relationship for your game design. For example: "We found a significant positive relationship between hours played and enjoyment score (p=0.003, R²=0.42), suggesting that players who spent more time with our game reported higher enjoyment."
+
+```{r linear}
+x <- survey_data$hours_per_week
+y <- survey_data$mood_matching_importance
+
+lm_model <- lm(y ~ x)
+summary(lm_model)
+
+plot(x, y, main = "Linear Regression: Hours Watched vs Mood Matching Importance",
+     xlab = "Hours Watched per Week", ylab = "Mood Matching Importance", pch = 19, col = "steelblue")
+abline(lm_model, col = "red", lwd = 2)
+```
+
+```{r}
+# Replace these with your actual variable names
+# x <- survey_data$hours_played
+# y <- survey_data$enjoyment_score
+# 
+# # Fit linear model
+# lm_model <- lm(y ~ x)
+
+# # Summary of the model
+# summary(lm_model)
+# 
+# # Plot with regression line
+# plot(x, y, main = "Linear Regression: Hours Played vs Enjoyment",
+#      xlab = "Hours Played", ylab = "Enjoyment Score", pch = 19, col = "steelblue")
+# abline(lm_model, col = "red", lwd = 2)
+```
+
+# Key Plots & Visualizations
+> For each visualization, write 3-5 sentences that: (1) Explain what variables are being compared, (2) Describe the pattern or trend shown, (3) Interpret what this means for your game design, and (4) Connect this insight to a specific recommendation if applicable. Don't just describe what's visually obvious (e.g., "the blue bars are taller") but interpret what it means for your research questions.
+
+## Histogram of Hours Watched per Week
+> For histograms, discuss the shape of the distribution (normal, skewed, bimodal, etc.), where most responses fall, and any outliers. Comment on what the distribution suggests about your player base.
+
+```{r}
+ggplot(survey_data, aes(x = hours_per_week)) +
+  geom_histogram(binwidth = 2, fill = "steelblue", color = "white") +
+  labs(
+    title = "Distribution of Weekly Streaming Hours",
+    x = "Hours per Week",
+    y = "Number of Respondents"
+  ) +
+  theme_minimal()
+```
+## Histogram of Hours Watched per Week by Platform
+> For faceted plots, compare patterns across different groups. Identify which groups show higher/lower values and discuss potential reasons why these differences exist. Consider how these differences might affect your design decisions.
+
+```{r}
+ggplot(survey_data, aes(x = hours_per_week)) +
+  geom_histogram(binwidth = 2, fill = "skyblue", color = "white") +
+  labs(
+    title = "Streaming Hours per Week by Platform",
+    x = "Hours per Week",
+    y = "Number of Respondents"
+  ) +
+  facet_wrap(~ main_platform) +
+  theme_minimal()
+```
+
+## Scatterplot: Mood Matching vs Relaxation
+> For scatterplots, describe the direction (positive/negative) and strength of the relationship. Note any clusters or outliers. If a trend line is included, interpret its slope and what that means practically.
+
+```{r}
+ggplot(survey_data, aes(x = mood_matching_importance, y = helps_me_relax)) +
+  geom_point(alpha = 0.7, color = "darkgreen") +
+  geom_smooth(method = "lm", se = FALSE, color = "red", linetype = "dashed") +
+  labs(
+    title = "Mood Matching vs. Streaming Relaxation",
+    x = "Mood Matching Importance (1–10)",
+    y = "Helps Me Relax (1–5)"
+  ) +
+  theme_minimal()
+```
+
+## Boxplot: Enjoyment by Group
+> For boxplots, compare the median values and ranges between groups. Look for differences in spread (variance) and identify any groups with notable outliers. Discuss what these differences suggest about different player segments.
+
+```{r}
+# Basic boxplot using ggplot2
+ggplot(survey_data, aes(x = binged_over_5, y = mood_matching_importance, fill = binged_over_5)) +
+  geom_boxplot() +
+  labs(
+    title = "Mood Matching Importance by Binge-Watching Behavior",
+    x = "Binge-Watched More Than 5 Episodes?",
+    y = "Mood Matching Importance (1–10)"
+  ) +
+  theme_minimal()
+```
+
+## Violinplot: Mood Matching Importance by Binge-Watched
+> For violin plots, examine the shape of distributions for different groups. Comment on where density is highest for each group and compare the overall ranges. Note any multimodal distributions (multiple peaks) and what they might indicate.
+
+```{r}
+ggplot(survey_data, aes(x = binged_over_5, y = mood_matching_importance, fill = binged_over_5)) +
+  geom_violin(trim = FALSE) +
+  labs(
+    title = "Mood Matching Importance by Binge Habit, Faceted by Platform",
+    x = "Binge-Watched More Than 5 Episodes?",
+    y = "Mood Matching Importance (1–10)"
+  ) +
+  facet_wrap(~ main_platform) +
+  theme_minimal() +
+  theme(legend.position = "none")
+```
+
+# Observations & Interpretation
+> In this section, synthesize the findings from all your analyses and visualizations to form a cohesive narrative. Discuss 3-5 major patterns or insights that emerged. For each insight: (1) State the finding clearly, (2) Provide supporting evidence from your analysis, (3) Explain why this matters for your game design, and (4) Connect to your original research questions or hypotheses. Don't just repeat what's obvious from the graphs, but add depth by considering what these findings mean in the context of player experience and game development.
+
+- What trends or anomalies did you observe?
+- How do the results relate to your original questions?
+
+# Limitations
+> Honestly assess the weaknesses in your data collection or analysis. Explain how these limitations might affect the reliability or validity of your findings. Common limitations include: small sample size (anything under N=30), selection bias in participants, survey design issues, missing data, or confounding variables. For each limitation, briefly explain how you might address it in future research.
+
+- Small sample size?  
+- Bias in responses?  
+- Data inconsistencies?
+
+# Recommendations
+> Based on your data analysis, provide 3-5 specific, actionable recommendations for your game development team. For each recommendation: (1) State clearly what should be done, (2) Explain which data findings support this recommendation, (3) Discuss the expected impact on player experience, and (4) Consider any potential implementation challenges. Prioritize recommendations based on both importance and feasibility.
+
+- What should the game team adjust or improve?
+- Prioritize based on evidence.
+
+# Conclusion
+> Summarize the entire data analysis process, emphasizing the most important findings and their implications for your game. Briefly reiterate your key recommendations. Discuss any plans for future data collection or analysis that would build on this work. End with a reflection on how this data analysis has informed your understanding of your players and your game design.
+
+**Summary of Findings:**  
+**Next Steps:**  
+**Final Thoughts:**  
+
+# References
+> List any external sources you consulted, including academic papers, game design resources, or methodological references. Use a consistent citation format (APA, MLA, etc.). If you adapted survey questions from existing research, be sure to cite the original sources.
+
+- Any methodologies or research you cited.
+
+# Appendices
+> Include any supplementary materials that provide additional context but aren't essential to your main report. This might include your complete survey questions, additional plots that didn't fit in the main report, or raw data snippets that illustrate specific points. Label each appendix clearly (e.g., "Appendix A: Complete Survey Instrument").
+
+- Raw data snapshots
+- Survey instruments
+- Extra plots or diagnostics

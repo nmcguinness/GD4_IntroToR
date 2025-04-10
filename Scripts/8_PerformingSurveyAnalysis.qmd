@@ -1,0 +1,203 @@
+---
+title: "Performing Survey Analysis"
+subtitle: "Survey Data Analysis (2022–23)"
+author: "Niall McGuinness"
+date: "04/10/2025"
+---
+
+```{r setup, include=FALSE}
+# Load tidyverse for wrangling and visualization
+if (!require("tidyverse")) install.packages("tidyverse")
+library(tidyverse)  # For data wrangling, plotting — includes ggplot2, dplyr, readr, etc.
+
+# Load survey data
+survey_data <- read.csv("data/2022_23_streaming_survey_responses.csv", stringsAsFactors = FALSE)
+```
+
+# Introduction
+
+This report presents a descriptive analysis of data collected from a survey on streaming habits. Participants answered questions about their viewing behavior, mood, and platform preferences.
+
+We use basic statistics and visualizations to explore relationships between variables and identify patterns.
+
+---
+
+# 1. Dataset Overview
+
+We begin by exploring the structure of the dataset.
+
+## 1.1 Preview of the Data
+
+```{r}
+head(survey_data)
+```
+
+## 1.2 Dataset Structure
+
+```{r}
+str(survey_data)
+```
+
+---
+
+# 2. Descriptive Statistics
+
+Here, we summarize numerical variables using measures like mean, median, and standard deviation.
+
+## 2.1 Summary of Key Variables
+
+```{r}
+summary(select(survey_data, Age, Subscriptions, Hours.per.Week, 
+               Last.Binge.Session..episodes.movies.,
+               Would.Recommend..1.10., Mood.Matching.Importance))
+```
+
+## 2.2 Central Tendency and Spread
+
+```{r}
+mean_age <- mean(survey_data$Age, na.rm = TRUE)
+median_hours <- median(survey_data$Hours.per.Week, na.rm = TRUE)
+sd_hours <- sd(survey_data$Hours.per.Week, na.rm = TRUE)
+
+paste("Mean Age:", mean_age)
+paste("Median Streaming Hours per Week:", median_hours)
+paste("Standard Deviation of Hours per Week:", round(sd_hours, 2))
+```
+
+---
+
+# 3. Frequency Tables
+
+These tables summarize categorical responses.
+
+## 3.1 Preferred Streaming Platforms
+
+```{r}
+table(survey_data$Main.Platform)
+```
+
+## 3.2 Binge-Watching Habits
+
+```{r}
+table(survey_data$Binged.Over.5)
+```
+
+---
+
+# 4. Correlation Between Mood-Related Items
+
+We examine relationships between Likert-scale items (1–5 or 1–10 ratings).
+
+## 4.1 Correlation Matrix
+
+```{r}
+likert_data <- select(survey_data,
+                      Recommends.Good.Shows,
+                      Interface.Usability,
+                      Feels.Overwhelmed,
+                      Helps.Me.Relax)
+
+cor_matrix <- cor(likert_data, use = "complete.obs")
+round(cor_matrix, 2)
+```
+
+---
+
+# 5. Data Visualizations
+
+## 5.1 Histogram: Weekly Streaming Hours
+
+```{r}
+hist(survey_data$Hours.per.Week,
+     breaks = 10,
+     col = 'steelblue',
+     main = 'Weekly Streaming Hours',
+     xlab = 'Hours per Week',
+     ylab = 'Frequency')
+```
+
+## 5.2 Boxplot: Age by Platform
+
+```{r}
+boxplot(Age ~ Main.Platform,
+        data = survey_data,
+        col = 'orange',
+        main = 'Age Distribution by Platform',
+        ylab = 'Age')
+```
+
+## 5.3 Scatterplot: Mood Matching vs Relaxation
+
+```{r}
+plot(survey_data$Mood.Matching.Importance,
+     survey_data$Helps.Me.Relax,
+     pch = 19,
+     col = 'darkgreen',
+     main = 'Mood Matching vs Relaxation',
+     xlab = 'Mood Matching (1–10)',
+     ylab = 'Relaxation Rating (1–5)')
+grid()
+```
+
+---
+
+# 6. Categorical Visuals
+
+## 6.1 Bar Plot: Platform Usage
+
+```{r}
+barplot(table(survey_data$Main.Platform),
+        col = 'skyblue',
+        main = 'Most Used Streaming Platforms',
+        ylab = 'Number of Users',
+        las = 2)
+```
+
+## 6.2 Pie Chart: Binge Watching Behavior
+
+```{r}
+pie(table(survey_data$Binged.Over.5),
+    col = c('lightgreen', 'tomato'),
+    main = 'Proportion of Binge (>5 Episodes) Viewers')
+```
+
+---
+
+# 7. Mood and Binge Behavior
+
+We compare mood-matching importance across binge-watching behavior.
+
+```{r}
+boxplot(Mood.Matching.Importance ~ Binged.Over.5,
+        data = survey_data,
+        col = c('violet', 'lightcoral'),
+        main = 'Mood Matching by Binge Habits',
+        xlab = 'Binged Over 5?',
+        ylab = 'Mood Matching (1–10)')
+```
+
+---
+
+# 8. Enhanced Strip Chart
+
+This strip chart provides a visual overview of individual responses for streaming hours.
+
+```{r}
+stripchart(survey_data$Hours.per.Week,
+           method = "jitter",
+           pch = 21,
+           col = "blue",
+           bg = "lightblue",
+           jitter = 0.2,
+           main = "Streaming Hours per Week (Individual Respondents)",
+           xlab = "Hours Watched per Week",
+           xlim = c(0, max(survey_data$Hours.per.Week, na.rm = TRUE)))
+abline(h = 1, col = "darkgray", lty = "dashed")
+mtext("Each point represents one survey response. Jitter prevents overlap.", side = 3, line = 0.5, cex = 0.8)
+```
+
+---
+
+# Conclusion
+
+This report offers a foundation for understanding trends in streaming behaviors. Future work could include hypothesis testing, comparisons across groups, or predictive models for user engagement.

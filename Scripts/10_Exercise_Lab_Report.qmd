@@ -1,0 +1,177 @@
+---
+title: "Game Survey Technical Lab Exercise"
+subtitle: "Creating Visualizations and Statistics for Lab Reports"
+author: "Comma-separated student name(s)"
+date: "`r format(Sys.Date(), '%B %d %Y')`"
+---
+
+```{r setup, include=FALSE}
+# Load required packages
+library(readr)       # For reading CSV files
+library(knitr)       # For tables
+library(stats)       # For statistical functions
+
+# Install esquisse if needed (run this once)
+# install.packages("esquisse")
+```
+
+# Lab Report Technical Tasks
+
+In this exercise, you will perform basic technical tasks needed to create a lab report based on game survey data. Focus on generating the required statistics and visualizations.
+
+# Task 1: Load and Display Data Structure
+
+Load the game survey data from the file "2023_24_game_survey_responses.csv" and display its structure to understand what variables are available.
+
+```{r}
+# Your code here to:
+# 1. Load the CSV file
+# 2. Display the data structure using str()
+# 3. Show the first few rows using head()
+```
+
+> **Hint:** Use `read.csv()` to load the data, `str()` to view the structure, and `head()` to see the first few rows.
+
+# Task 2: Generate Descriptive Statistics
+
+Create a table of descriptive statistics (mean, median, standard deviation, min, max) for the numeric variables in the dataset: age, immersion, enjoyment, difficulty_rating, graphics_rating, hours_played, and engagement.
+
+```{r}
+# Your code here to:
+# 1. Create a data frame with the variable names
+# 2. Calculate statistics for each variable
+# 3. Format the table using knitr::kable()
+```
+
+> **Hint:** You can use `mean()`, `median()`, `sd()`, `min()`, and `max()` functions for each variable. Put these in a data frame and then use `knitr::kable()` to display a nicely formatted table. Remember to use `round()` to limit decimal places.
+
+# Task 3: Create Frequency Tables for Categorical Variables
+
+Generate and display frequency tables for the categorical variables: gender, prior_gaming_experience, and platform_played_on.
+
+```{r, eval=FALSE}
+# SOLUTION PROVIDED:
+# Create frequency table for gender
+gender_table <- table(game_data$gender)
+knitr::kable(gender_table, caption = "Distribution by Gender")
+
+# Create frequency table for gaming experience
+experience_table <- table(game_data$prior_gaming_experience)
+knitr::kable(experience_table, caption = "Distribution by Prior Gaming Experience")
+
+# Create frequency table for platform
+platform_table <- table(game_data$platform_played_on)
+knitr::kable(platform_table, caption = "Distribution by Platform")
+```
+
+> **Note:** This solution is provided because we haven't covered frequency tables in class yet. Notice how we use `table()` to count occurrences and `knitr::kable()` to display the results in a nice format.
+
+# Task 4: Create a Basic Histogram of Age Distribution
+
+Create a histogram showing the distribution of participant ages.
+
+```{r}
+# Your code here to:
+# 1. Create a histogram of the age variable
+# 2. Add appropriate labels and colors
+```
+
+> **Hint:** Use `hist()` with parameters like `main` for the title, `xlab` for the x-axis label, `col` for color, and `breaks` to control the number of bins.
+
+# Task 5: Create QQ Plots to Check Normality
+
+Generate QQ plots for enjoyment, hours_played, engagement, and difficulty_rating to check if these variables follow a normal distribution.
+
+```{r}
+# Your code here to:
+# 1. Set up a 2x2 plot layout
+# 2. Create QQ plots for each variable
+# 3. Add QQ lines to each plot
+# 4. Reset the plot layout
+```
+
+> **Hint:** Use `par(mfrow=c(2,2))` to create a 2x2 grid. For each variable, use `qqnorm()` followed by `qqline()`. Reset the layout with `par(mfrow=c(1,1))` when finished.
+
+# Task 6: Create Box Plots Comparing Key Variables by Platform
+
+Create box plots that compare enjoyment and engagement across different gaming platforms.
+
+```{r}
+# Your code here to:
+# 1. Create a boxplot of enjoyment by platform
+# 2. Create a boxplot of engagement by platform
+```
+
+> **Hint:** Use `boxplot()` with a formula like `enjoyment ~ platform_played_on, data = game_data`. Add titles and labels using `main`, `xlab`, and `ylab` parameters.
+
+# Task 7: Create a Scatter Plot of Hours Played vs. Enjoyment
+
+Create a scatter plot showing the relationship between hours played and enjoyment rating.
+
+```{r}
+# Your code here to:
+# 1. Create a scatter plot with hours_played on x-axis and enjoyment on y-axis
+# 2. Add appropriate titles and formatting
+```
+
+> **Hint:** Use `plot()` with the first argument as x-values and second argument as y-values. Customize with `main`, `xlab`, `ylab`, `pch` (point type), and `col` (color) parameters.
+
+# Task 8: Perform Linear Regression Analysis
+
+Run linear regression analyses to examine:
+1. The relationship between hours_played and enjoyment
+2. The relationship between difficulty_rating and enjoyment
+
+```{r}
+# Your code here to:
+# 1. Create a linear model for hours_played vs enjoyment
+# 2. Display the summary of this model
+# 3. Create a linear model for difficulty_rating vs enjoyment
+# 4. Display the summary of this model
+```
+
+> **Hint:** Use `lm()` with a formula like `enjoyment ~ hours_played, data = game_data` to create each model. Then use `summary()` on the model object to display the results.
+
+# Task 9: Plot Linear Regression Results
+
+Create a scatter plot of hours played vs. enjoyment and add the regression line from your model in Task 8. Include the formula and R² value on the plot.
+
+```{r}
+# Your code here to:
+# 1. Create a scatter plot of hours_played vs enjoyment
+# 2. Add the regression line from your model
+# 3. Add text showing the formula and R-squared value
+```
+
+> **Hint:** First create the scatter plot with `plot()`. Then add the regression line with `abline(model)`. Extract the coefficients with `coef(model)` and R² with `summary(model)$r.squared`. Use `legend()` or `text()` to add this information to the plot.
+
+# Task 10: Use Esquisse to Create an Improved Plot
+
+Use the esquisse package to create an improved version of the hours played vs. enjoyment plot, with data points colored by platform.
+
+```{r eval=FALSE}
+# Your code here to:
+# 1. Load the esquisse package
+# 2. Open the esquisse interface with your data
+# 3. Create your plot
+# 4. Export the code and paste it below
+```
+
+```{r}
+# Paste your esquisse-generated code here
+```
+
+> **Hint:** Run `library(esquisse)` followed by `esquisser(game_data)`. In the interface, select hours_played for x-axis, enjoyment for y-axis, and platform_played_on for color. After creating your plot, click "Export & Run" and choose "as code". Copy the generated code to your document.
+
+# Task 11: Create a Barplot of Average Ratings by Platform
+
+Calculate the mean enjoyment, immersion, and graphics_rating for each platform, then create a bar plot showing the average enjoyment by platform.
+
+```{r}
+# Your code here to:
+# 1. Calculate mean ratings by platform using aggregate()
+# 2. Display the results in a table
+# 3. Create a bar plot of average enjoyment by platform
+```
+
+> **Hint:** Use `aggregate()` with a formula like `cbind(enjoyment, immersion, graphics_rating) ~ platform_played_on, data = game_data, FUN = mean`. Display the results with `knitr::kable()`. Create the bar plot with `barplot()`.
