@@ -1,5 +1,5 @@
-#' @title 1_Exercises.R
-#' @description Sandbox exercises for R programming, including data manipulation and visualization.
+#' @title 1_Esquisse.R
+#' @description Sandbox exercises for R programming and using Esquisse
 #' @author NMCG
 #' @bugs None
 
