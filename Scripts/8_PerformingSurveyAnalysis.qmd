@@ -3,9 +3,22 @@ title: "Performing Survey Analysis"
 subtitle: "Survey Data Analysis (2022–23)"
 author: "Niall McGuinness"
 date: "04/10/2025"
+format:
+  html:
+    toc: true
+    code-fold: false
+    code-tools: false
+    echo: false
+    warning: false
+  pdf:
+    toc: true
+    number-sections: true
+    fig_caption: true
+    fig_width: 8
+    fig_height: 5
 ---
 
-```{r setup, include=FALSE}
+```{r something}
 # Load tidyverse for wrangling and visualization
 if (!require("tidyverse")) install.packages("tidyverse")
 library(tidyverse)  # For data wrangling, plotting — includes ggplot2, dplyr, readr, etc.
@@ -31,6 +44,8 @@ We begin by exploring the structure of the dataset.
 ```{r}
 head(survey_data)
 ```
+
+---
 
 ## 1.2 Dataset Structure
 
@@ -89,6 +104,9 @@ table(survey_data$Binged.Over.5)
 We examine relationships between Likert-scale items (1–5 or 1–10 ratings).
 
 ## 4.1 Correlation Matrix
+
+Something *intelligent** *here...*
+ - [DkIT](www.dkit.ie)
 
 ```{r}
 likert_data <- select(survey_data,

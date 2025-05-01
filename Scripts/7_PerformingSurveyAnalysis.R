@@ -167,19 +167,20 @@ mtext("Each point represents one survey response.Jitter prevents overlap.", side
 
 # Enhanced Histogram of Weekly Streaming Hours
 hist(survey_data$Hours.per.Week,
-     breaks = 10,
+     breaks = 20,
      col = "steelblue",
      border = "white",
      main = "Distribution of Weekly Streaming Hours",
      xlab = "Hours Watched per Week (grouped into 2-hour bins)",
      ylab = "Number of Respondents",
      xlim = c(0, 25),
-     ylim = c(0, 10)  
+     ylim = c(0, 8)  
 )
 
 # Add gridlines for readability
-grid(col = "lightgray", lty = "dotted")
+grid(col = "lightgray", 
+     lty = "longdash")
 
 # Annotate the plot with additional info
-mtext("Note: Data collected from 2022/23 streaming survey (n = 46)", side = 1, line = 4, cex = 0.8)
+mtext("Note: Data collected from 2022/23 streaming survey (n = 46)", side = 1, line = 2, cex = 0.8)
 

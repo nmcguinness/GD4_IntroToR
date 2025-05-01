@@ -1,0 +1,161 @@
+---
+title: "Wordcloud from CSV file"
+subtitle: "Employer-Requested Soft Skills and Tools"
+author: "Niall McGuinness"
+date: "`r format(Sys.Date(), '%B %d %Y')`"
+format:
+  html:
+    toc: true
+    code-fold: false
+    code-tools: false
+    echo: false
+    warning: false
+---
+
+```{r}
+#| label: beautiful-ggwordcloud-final
+#| message: false
+#| warning: false
+
+# ---------------------------------------------------------------------------
+# USER-EDITABLE SECTION: Set all important file and output options here!
+# ---------------------------------------------------------------------------
+
+# Set the folder where your Excel file is stored
+data_folder <- "data"
+
+# Set the name of your Excel file (without .xlsx extension)
+data_file <- "non_technical_skills_employer_feedback" # or "non_technical_skills_employer_feedback"
+
+# Set the exact name of your Excel file (must match the file in your folder)
+excel_file  <- paste0(data_file, ".xlsx")
+
+# Set the SVG output file name (this is what your plot will be saved as)
+svg_file <- paste0(data_file, ".svg")
+
+# Combine folder and filename into a full file path (cross-platform safe)
+input_path  <- file.path(data_folder, excel_file)
+
+# Set the width and height (in inches) for your SVG output
+svg_width <- 10    # Width in inches (e.g., 10)
+svg_height <- 10    # Height in inches (e.g., 10)
+
+# Set the background color for your plot (white or light gray)
+background_color <- "black" # Options: "white" or "lightgray"
+
+# ---------------------------------------------------------------------------
+# PACKAGE INSTALLATION AND LOADING (runs only if package is missing)
+# ---------------------------------------------------------------------------
+required_packages <- c(
+  "tidyverse",      # Data wrangling and visualization
+  "readxl",         # Reading Excel files
+  "janitor",        # Cleaning column names
+  "ggwordcloud",    # Wordclouds with ggplot2
+  "shadowtext",     # Adding text shadows for readability
+  "showtext",       # Google Fonts for plots
+  "RColorBrewer",   # Color palettes
+  "scales"          # For color/legend utilities
+)
+for (pkg in required_packages) {
+  if (!require(pkg, character.only = TRUE)) install.packages(pkg)
+}
+library(tidyverse)
+library(readxl)
+library(janitor)
+library(ggwordcloud)
+library(shadowtext)
+library(showtext)
+library(RColorBrewer)
+library(scales)
+
+# ---------------------------------------------------------------------------
+# FONT: Add a modern font from Google Fonts for professional appearance
+# ---------------------------------------------------------------------------
+font_add_google("Lato", "lato")
+showtext_auto() # Use the custom font in all plots
+
+# ---------------------------------------------------------------------------
+# READ AND CLEAN YOUR DATA
+# ---------------------------------------------------------------------------
+skills_data <- read_excel(input_path) %>%
+  janitor::clean_names()
+
+# ---------------------------------------------------------------------------
+# DIAGNOSTIC: Check your category names before plotting
+# ---------------------------------------------------------------------------
+print(unique(skills_data$category))
+# IMPORTANT: If you see any unexpected names or typos, fix your data or palette!
+
+# ---------------------------------------------------------------------------
+# COLOR PALETTE: Define colors for each category
+# ---------------------------------------------------------------------------
+okabe_ito_palette <- c(
+  "#E69F00", "#56B4E9", "#009E73", "#F0E442",
+  "#0072B2", "#D55E00", "#CC79A7", "#999999"
+)
+n_cat <- length(unique(skills_data$category))
+category_colors <- setNames(okabe_ito_palette[1:n_cat], unique(skills_data$category))
+
+# ---------------------------------------------------------------------------
+# DATA PREPARATION FOR WORDCLOUD
+# ---------------------------------------------------------------------------
+skills_data <- skills_data %>%
+  mutate(
+    sub_topic = as.character(sub_topic),
+    category = as.factor(category)
+  )
+wordcloud_data <- skills_data %>%
+  group_by(sub_topic, category) %>%
+  summarise(frequency = sum(frequency, na.rm = TRUE), .groups = "drop")
+
+# ---------------------------------------------------------------------------
+# ROTATE WORDS: Set subtle, readable angles for visual interest
+# ---------------------------------------------------------------------------
+set.seed(42) # Setting seed for reproducibility
+wordcloud_data <- wordcloud_data %>%
+  mutate(angle = sample(c(0, 45, -45), nrow(.), replace = TRUE))
+wordcloud_data <- wordcloud_data %>%
+  mutate(angle = 15)
+
+# ---------------------------------------------------------------------------
+# CREATE THE WORDCLOUD PLOT
+# ---------------------------------------------------------------------------
+wc_gg <- ggplot(wordcloud_data, aes(
+    label = sub_topic,
+    size = frequency,
+    color = category,
+    angle = angle
+  )) +
+  geom_text_wordcloud(family = "Segoe UI", rm_outside = TRUE) +
+  scale_color_manual(
+    values = category_colors,
+    name = "Category"
+  ) +
+  scale_size_area(max_size = 20) +
+  theme_minimal(base_family = "lato") +
+  theme(
+    panel.background = element_rect(fill = background_color, color = NA),
+    plot.background = element_rect(fill = background_color, color = NA),
+    plot.margin = margin(0, 0, 0, 0),
+     panel.spacing = unit(0, "pt")
+  ) 
+
+# ---------------------------------------------------------------------------
+# SHOW THE WORDCLOUD IN YOUR DOCUMENT
+# ---------------------------------------------------------------------------
+wc_gg
+
+# ---------------------------------------------------------------------------
+# EXPORT THE WORDCLOUD AS AN SVG FILE (good for print and zoom)
+# ---------------------------------------------------------------------------
+ggsave(
+  filename = file.path(data_folder, svg_file),      # SVG file name set at the top!
+  plot = wc_gg,             # Plot to save
+  width = svg_width,        # Width in inches set at the top
+  height = svg_height,      # Height in inches set at the top
+  units = "in"
+)
+
+
+```
+

@@ -1,0 +1,179 @@
+---
+title: "Collaborative Project 2024/25"
+subtitle: "3DGD – GCA – Data Analysis – Final Lab Report"
+author: "Team Name – Game Name – Comma-separated student name(s)"
+date: "05/01/2025"
+
+format:
+  html:
+    theme: cosmo         # example Bootstrap theme
+    toc: true           
+    toc-depth: 2        
+    number-sections: true
+    code-fold: true      
+    code-tools: true     
+  pdf:
+    toc: true
+    toc-depth: 2
+    number-sections: true
+    fig-width: 6
+    fig-height: 4
+    echo: false
+    warning: false
+---
+
+## Executive Summary (150 words) [^notes1]
+**Purpose of Testing:**  
+**Key Findings (Summary):**  
+**Recommendations (Summary):**
+
+[^notes1]:
+- **Purpose**: Provide a high‑level overview for stakeholders who need a quick read.
+- **Key Findings**: Emphasise the most critical or impactful insights.
+- **Recommendations**: Summarise high‑level suggestions.
+- *Example:*  
+  > *“This user‑testing session aimed to identify major usability issues in the new tutorial level.  
+  > Key findings indicate that players struggled with the crafting interface, prompting an immediate redesign.  
+  > We recommend streamlining the interface and adding in‑game hints.”*
+
+## Introduction (200 words) [^notes2]
+**Context & Background:**  
+**Scope of Testing:**  
+**Objectives:**
+
+[^notes2]:
+- **Context & Background**: Summarise the game’s genre, platform, and development stage (Alpha, Beta, etc.).
+- **Scope**: State what specifically is being tested (tutorial, first two levels, etc.).
+- **Objectives**: Outline the specific questions or goals (e.g., “Is the new resource system intuitive?”).
+
+## Methodology (250 words) [^notes3]
+**Test Design & Approach:**  
+**Test Scenarios / Tasks:**  
+**Metrics Collected:**
+
+[^notes3]:
+- Describe **how** you conducted the tests (usability tests, playtests, think‑aloud protocol).
+- Mention if sessions were **remote** (Zoom, Skype) or **in‑person**.
+- *Example tasks:* *Complete a tutorial, fight the first boss, etc.*
+- List metrics collected (*time on task, error rates, user comments*).
+
+## Participants (150 words) [^notes4]
+**Recruitment & Criteria:**  
+**Number & Demographics:**  
+**Consent & Ethics:**
+
+[^notes4]:
+- Explain how participants were **recruited** (friends, professional testers, random volunteers).
+- Include **demographics** if relevant (e.g., gaming background, age range).
+- Note any **ethical steps** (informed consent, confidentiality agreements).
+
+## Materials \& Tools (150 words) [^notes5]
+**Software / Hardware Specs:**  
+**Testing Environment:**  
+**Data‑capture Tools:**
+
+[^notes5]:
+- Detail specific **hardware/software** used (OS, CPU, game build version).
+- State if sessions occurred in a **lab setting**, living room, or online.
+- Note any **recording or survey tools** (OBS Studio, Google Forms, etc.).
+
+## Procedure (200 words) [^notes6]
+**Session Flow:**  
+**Facilitator & Observer Roles:**  
+**Instructions to Participants:**  
+**Session Duration:**
+
+[^notes6]:
+- Provide a **step‑by‑step** sequence of the testing process.
+- *Example:*  
+  1. Welcome & consent forms  
+  2. Brief explanation of game controls  
+  3. 15‑minute play session with think‑aloud feedback  
+  4. Post‑test interview or questionnaire
+
+## Data Analysis (400 words) 
+### Quantitative Analysis (numerical survey items)
+1. **Select 3–4 key numeric variables.**
+2. **Descriptive statistics** – *n, mean, median, SD, min, max*.
+3. **Distribution plots** – *maximum 3 plots per variable* (e.g., histogram, box‑and‑whisker, QQ). Comment on modality, skewness, outliers.
+4. **Normality check** – QQ‑plot plus Shapiro‑Wilk (*n ≤ 50*); report statistic & *p*. State conclusion (*α = 0.05*).
+5. **Relationship analysis** – choose the two most related numeric variables and justify.  
+   * Scatter‑plot with fitted regression line (counts as one of the three plots for each variable).  
+   * Report Pearson’s *r* (Spearman’s ρ if non‑normal).  
+   * Linear regression \(y = β₀ + β₁x\): β, SE, *t*, *p*, 95 % CI, *R²*.
+  * *R hint:* After running `model <- lm(y ~ x, data = df)`, open `summary(model)` and report:
+    * **Coefficients** table — *Estimate* (β), *Std. Error*, *t value*, *Pr(>|t|)* for both the intercept and slope.
+    * Bottom‑line **Multiple R‑squared** (and *Adjusted R‑squared* if *n* is small).
+
+### Qualitative Analysis (if applicable) [^notes7]
+Summarise open‑text answers as themes.
+
+### Key Observations
+Highlight surprising patterns or anomalies.
+
+[^notes7]:
+- Use **code** (R, Python or Excel) to generate all statistics and plots.
+- Include scripts/outputs in **Appendix A** (these are excluded from the word count).
+
+## Results (400 words) [^notes8]
+### Findings by Category
+* **Descriptive statistics table** – one row per variable.
+* Up‑to‑three illustrative plots per variable with concise captions.
+
+### Critical Issues
+Note non‑normal variables, serious outliers or assumption breaches.
+
+### Positive Outcomes \& Relationships
+Present regression results and practical significance.
+
+_All detailed numeric output belongs in the appendix._
+
+[^notes8]:
+- Present findings clearly (bullet points, charts or tables).
+- Separate major categories (*UI, mechanics, performance*, etc.).
+- Highlight strong positives (*fun moments, effective features*) and pain points (*confusion, crashes*).
+
+## Discussion (250 words) [^notes9]
+Interpret how the results answer your objectives and compare with expectations.
+
+[^notes9]:
+- Relate findings back to **objectives**.
+- Mention **unexpected results** or whether goals were met.
+- Discuss study **constraints** (small sample, only one device type).
+
+## Recommendations (200 words) [^notes10]
+Prioritised improvements and a brief action roadmap.
+
+[^notes10]:
+- List changes or fixes, ideally in **priority order** (*must‑fix* vs. *optional*).
+- Provide a direct **roadmap** for the dev team.
+- *Example:*  
+  > *“We recommend redesigning the crafting menu, adding a tooltip for each resource.  
+  > In the next round of testing, we’ll focus on verifying these changes.”*
+
+## Conclusion (150 words) [^notes11]
+Concise restatement of the most important takeaway and next steps.
+
+[^notes11]:
+- Recap the overall **impact** of the user‑testing results.
+- Reinforce the **benefit** of findings for final product quality.
+- Mention upcoming **milestones or expansions** that might also need testing.
+
+## References (excluded from word count) [^notes12]
+List any literature, standards or tools cited.
+
+[^notes12]:
+- If you cited any research or used external guides/methodologies, list them here.
+- *Example:*  
+  > - Nielsen, J. (1994). *Usability inspection methods.*  
+  > - ISO 9241‑11:2018. *Ergonomics of human–system interaction.*
+
+## Appendices (optional, excluded from word count) [^notes13]
+**A. Links to Raw Data / Scripts**  
+**B. Links to Screenshots / Videos**  
+**C. Links to Questionnaires & Scripts**
+
+[^notes13]:
+- Include lengthy data or materials that don’t fit in the main body.
+- *Example:* full transcripts, raw survey data, or a copy of the test script.
+

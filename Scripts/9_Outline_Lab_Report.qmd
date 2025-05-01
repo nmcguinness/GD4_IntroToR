@@ -11,7 +11,7 @@ format:
     number-sections: true
     highlight-style: github
     fig-align: center
-    theme: flatly
+    theme: light
     code-fold: false
     echo: false
     warning: false

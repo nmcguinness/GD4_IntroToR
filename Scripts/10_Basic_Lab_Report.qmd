@@ -1,5 +1,5 @@
 ---
-title: "Game Survey Technical Lab Exercise"
+title: "Game Survey - Basic Lab Report"
 subtitle: "Creating Visualizations and Statistics for Lab Reports"
 author: "Comma-separated student name(s)"
 date: "`r format(Sys.Date(), '%B %d %Y')`"
